@@ -49,6 +49,13 @@
    </div>
  </template>
 
+   <template v-else>
+     <div class="container">
+       <p>No Record Found</p>
+     </div>
+
+   </template>
+
  </div>
 </template>
 
@@ -68,30 +75,14 @@ export default {
 
   methods: {
 
-    deg2rad: function (deg) {
-      return deg * (Math.PI / 180)
-    },
-
-    getDistanceFromLatLonInKm: function (lat1, lon1) {
-      var R = 6371 // Radius of the earth in km
-      var dLat = this.deg2rad(parseFloat(this.latitude) - lat1) // deg2rad below
-      var dLon = this.deg2rad(parseFloat(this.longitude) - lon1)
-      // var lat1 = this.deg2rad(lat1)
-      // var lat2 = this.deg2rad(lat2)
-      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(parseFloat(this.latitude))) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-      // Distance in km
-      return R * c
-    },
-
     getAddressData: function (addressData) {
       this.latitude = addressData.latitude
       this.longitude = addressData.longitude
     },
 
     search_hotel () {
-      var secondLon = parseFloat(this.longitude)
-      var secondLat = parseFloat(this.latitude)
+      const secondLon = parseFloat(this.longitude)
+      const secondLat = parseFloat(this.latitude)
       if (!this.latitude) {
         alert('please select a location')
       } else if (!this.longitude) {
@@ -113,6 +104,14 @@ export default {
     }
   },
   components: { VueGoogleAutocomplete },
+  watch: {
+
+    latitude: function (newVal) {
+      if (newVal === '') {
+        this.hotelsFiltered.length = 0
+      }
+    }
+  },
 
   computed: {
     ...mapGetters({

@@ -24,7 +24,7 @@ const actions = {
         const hotel = []
         hotel.push(result)
         state.hotels = hotel
-        console.log('this is hotels', result)
+        // console.log('this is hotels', result)
       })
       .catch(err => {
         console.log(err)
