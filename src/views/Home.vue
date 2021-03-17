@@ -12,6 +12,7 @@
 </vue-google-autocomplete>
  <button class="btn btn-primary mt-3" @click="search_hotel"> Search Hotel</button>
   </div>
+  <br /> <br />
  <template v-if="hotelsFiltered.length > 0">
    <div class="container">
             <div class="row p-b-20">
