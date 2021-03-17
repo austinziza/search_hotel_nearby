@@ -28,7 +28,7 @@
                   <th>Star Rating</th>
                 </tr>
               </thead>
-
+                <tbody>
                 <tr
                   class="odd gradeX"
                   v-for="(hotel, index) in hotelsFiltered"
@@ -43,6 +43,7 @@
                    <td>{{ hotel.address }}</td>
                     <td>{{ hotel.star_rating }}</td>
                 </tr>
+                </tbody>
                 </table>
 
             </div>
@@ -88,9 +89,6 @@ export default {
       } else if (!this.longitude) {
         alert('please select a location')
       } else {
-        console.log('getArray', this.hotels)
-        console.log('latitude', this.latitude)
-        console.log('longitude', this.longitude)
         const filteredHotel = this.hotels[0].rakuten_hotels.filter(hotel => {
           const firstLat = parseFloat(hotel.latitude)
           const firstLon = parseFloat(hotel.longitude)
