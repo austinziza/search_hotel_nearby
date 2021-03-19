@@ -3,6 +3,7 @@
       <div class="container">
           <div class="row">
               <h4 class="text-center mb-5">SEARCH VIA HAVE MY ROOM API</h4>
+               <router-link to="/" class="text-center">Click to Search Via Vue Js Filter</router-link>
           </div>
       </div>
     <div class="text-center mt-5">

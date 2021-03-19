@@ -4,6 +4,7 @@
       <div class="container">
           <div class="row">
               <h4 class="text-center mb-5">SEARCH VIA VUE JS FILTER</h4>
+              <router-link to="/searchhotelapi" class="text-center">Click to Search Via HaveMyRoom API</router-link>
           </div>
       </div>
    <div class="text-center mt-5">
