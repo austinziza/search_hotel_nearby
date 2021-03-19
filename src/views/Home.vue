@@ -1,6 +1,11 @@
 <template>
  <div>
 
+      <div class="container">
+          <div class="row">
+              <h4 class="text-center mb-5">SEARCH VIA VUE JS FILTER</h4>
+          </div>
+      </div>
    <div class="text-center mt-5">
           <label>Enter  Location</label>
       <vue-google-autocomplete
