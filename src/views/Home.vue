@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div ref="hotelLoader">
 
       <div class="container">
           <div class="row">
@@ -91,11 +91,10 @@ export default {
     search_hotel () {
       const secondLon = parseFloat(this.longitude)
       const secondLat = parseFloat(this.latitude)
-      if (!this.latitude) {
-        alert('please select a location')
-      } else if (!this.longitude) {
+      if (!this.latitude || !this.longitude) {
         alert('please select a location')
       } else {
+        const loader = this.$loading.show({ container: this.$refs.hotelLoader })
         const filteredHotel = this.hotels[0].rakuten_hotels.filter(hotel => {
           const firstLat = parseFloat(hotel.latitude)
           const firstLon = parseFloat(hotel.longitude)
@@ -103,6 +102,7 @@ export default {
           const distance = UTIL.getDistanceFromLatLonInKm(firstLat, firstLon, secondLat, secondLon)
           if (distance <= 10) return hotel
         })
+        loader.hide()
         this.hotelsFiltered = filteredHotel
         console.log(filteredHotel)
       }

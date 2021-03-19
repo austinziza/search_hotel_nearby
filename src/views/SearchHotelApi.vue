@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="hotelLoader">
       <div class="container">
           <div class="row">
               <h4 class="text-center mb-5">SEARCH VIA HAVE MY ROOM API</h4>
@@ -85,11 +85,10 @@ export default {
     },
 
     async search_hotel () {
-      if (!this.latitude) {
-        alert('please select a location')
-      } else if (!this.longitude) {
+      if (!this.latitude || !this.longitude) {
         alert('please select a location')
       } else {
+        const loader = this.$loading.show({ container: this.$refs.hotelLoader })
         await fetch('https://us-central1-havemyroomstaging.cloudfunctions.net/api/v1/hotelsnearby', {
           method: 'POST',
           body: JSON.stringify({
@@ -106,10 +105,12 @@ export default {
           return response.json()
         })
           .then(result => {
+            loader.hide()
             this.hotelsFiltered = result
             // console.log('this is hotels', result)
           })
           .catch(err => {
+            alert(err.message)
             console.log(err)
           })
       }
